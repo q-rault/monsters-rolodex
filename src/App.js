@@ -26,10 +26,10 @@ class App extends Component {
       ],
     };
   }
-  handleChange = e => {
+  handleChange = (e) => {
     this.setState(
       { searchField: e.target.value }
-      //()=> console.log(this.state) // CALLBACK FUNCTION TO RUN WHEN SETSTATE FINISHES
+      // ()=> console.log(this.state) // CALLBACK FUNCTION TO RUN WHEN SETSTATE FINISHES
     );
   };
 
@@ -39,14 +39,17 @@ class App extends Component {
       .then((users) => this.setState({ monsters: users }));
   }
   render() {
-    const { monsters, searchField } = this.state;
+    const { monsters, searchField, title } = this.state;
     const filteredMonsters = monsters.filter((monster) =>
       monster.name.toLowerCase().includes(searchField.toLowerCase())
     );
     return (
       <div className="App">
         <h1>Monsters Rolodex</h1>
-        <SearchBox placeholder='search monsters' handleChange={this.handleChange} />
+        <SearchBox
+          placeholder="search monsters"
+          handleChange={this.handleChange}
+        />
         <CardList monsters={filteredMonsters} />
       </div>
     );
